@@ -28,7 +28,7 @@
 #'                 "2018-10-15 04:00:00", "2018-10-31 01:00:00", tz = "America/New_York", token)
 #' }
 hv_data <- function(location_name, start_time, end_time, tz = "UTC",
-                    token, url = "https://www.hydrovu.com/public-api/v1/locations/") {
+                    token, url) {
 
   # convert the time to timestamp
  # start <- as.numeric(as.POSIXct(start_time, tz = tz))
@@ -39,10 +39,12 @@ hv_data <- function(location_name, start_time, end_time, tz = "UTC",
   end <- as.numeric(lubridate::with_tz(lubridate::ymd_hms(end_time, tz = tz), tzone = "UTC"))
 
   # get the locations
+  options(scipen = 999) # turn off scientific notation (for IDs)
   locs <- hv_locations(token)
   location_id <- locs[locs$name==location_name,]$id
 
   # build the url
+  url = "https://www.hydrovu.com/public-api/v1/locations/"
   url <- paste0(url, location_id, "/data?endTime=", end, "&startTime=", start)
 
   req <- httr2::request(url)
