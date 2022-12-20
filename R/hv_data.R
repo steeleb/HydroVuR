@@ -41,7 +41,7 @@ hv_data <- function(location_name, start_time, end_time, tz = "UTC",
   # get the locations
   options(scipen = 999) # turn off scientific notation (for IDs)
   locs <- hv_locations(token)
-  location_id <- locs[locs$name==location_name,]$id
+  location_id <- locs[locs$name==location_name,]$id[1]
 
   # build the url
   url = "https://www.hydrovu.com/public-api/v1/locations/"
