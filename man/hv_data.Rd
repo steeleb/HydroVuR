@@ -9,8 +9,7 @@ hv_data(
   start_time,
   end_time,
   tz = "UTC",
-  token,
-  url = "https://www.hydrovu.com/public-api/v1/locations/"
+  token
 )
 }
 \arguments{

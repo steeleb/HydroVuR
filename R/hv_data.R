@@ -39,7 +39,7 @@ hv_data <- function(location_name, start_time, end_time, tz = "UTC",
   end <- as.numeric(lubridate::with_tz(lubridate::ymd_hms(end_time, tz = tz), tzone = "UTC"))
 
   # get the locations
-  options(scipen = 999) # turn off scientific notation (for IDs)
+  options(scipen = 999) # turn off scientific notation (for IDs to come through correctly)
   locs <- hv_locations(token)
   location_id <- locs[locs$name==location_name,]$id[1]
 
